@@ -1,82 +1,107 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+﻿# SokoTani
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+SokoTani is a Laravel marketplace for local agricultural products. Farmers can publish crop listings, buyers can negotiate wholesale prices, and both sides can track updates through in-app notifications. The app is designed for direct farm-to-market trading in a village context with transparent negotiation and simple trust signals.
 
-## SokoTani Marketplace
+## Features
 
-Farmers can maintain a public farm profile and list wholesale products. Buyers and farmers receive in-app notifications when offers are submitted, countered, accepted, rejected, cancelled, or completed. Administrators review farmer profiles before displaying the verified badge.
+- Farmer storefronts with public farm profile pages
+- Product catalog with search and category filtering
+- Wholesale negotiation flow with buyer and farmer responses
+- Offer tracking and status updates
+- In-app notification center for new offers, counters, accept/reject actions, and completion events
+- Admin verification for farmer trust badges
+- Demo seed data for farmer, buyer, and admin accounts
 
-### Local demo data
+## Tech stack
 
-In a local development environment, seed the sample farmers, buyers, products, and admin account with `php artisan db:seed --class="Database\\Seeders\\DemoMarketplaceSeeder"`. All seeded demo accounts use the password shown in the seeder; do not use demo accounts or passwords in production.
+- PHP 8.1+
+- Laravel 10
+- MySQL / MariaDB-compatible database
+- Blade templates and Laravel routes/controllers
+- PHPUnit for feature coverage
 
-### Administrator access
+## Project structure
 
-Do not allow public registration as an admin. Register the intended account normally, then run `php artisan sokotani:make-admin admin@example.com` in a secure terminal. The command prompts for the existing account password without echoing it before promoting that account. Restrict this command to trusted operators.
+- `app/` — controllers, models, middleware, and notifications
+- `database/migrations/` — schema for users, products, offers, and notifications
+- `database/seeders/` — demo marketplace seeders
+- `resources/views/` — Blade templates for marketplace, profiles, and admin workflows
+- `routes/web.php` — application routes
+- `tests/Feature/MarketplaceTest.php` — user flow validation
 
-### Verification workflow
+## Local setup
 
-Farmers update their profile from the account menu. An admin reviews each public profile under **Verifikasi**, then explicitly verifies or revokes the badge. Farmer phone numbers remain private and are not shown on public profiles.
+1. Clone the repository.
+2. Copy the environment example:
 
-## About Laravel
+```bash
+cp .env.example .env
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+3. Generate the application key:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+```bash
+php artisan key:generate
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+4. Configure your database connection in `.env`.
+5. Run the database setup and seed demo data:
 
-## Learning Laravel
+```bash
+php artisan migrate
+php artisan db:seed --class="Database\\Seeders\\DemoMarketplaceSeeder"
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+6. Start the app:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+php artisan serve
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+7. Open http://localhost:8000
 
-## Laravel Sponsors
+## Demo accounts
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+The demo seeder creates these local accounts. The shared password is:
 
-### Premium Partners
+```text
+SokoTaniDemo!2026
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Accounts:
 
-## Contributing
+- Farmer: `farmer.budi@sokotani.test`
+- Farmer: `farmer.sari@sokotani.test`
+- Farmer: `farmer.joko@sokotani.test`
+- Buyer: `buyer.maya@sokotani.test`
+- Buyer: `buyer.andi@sokotani.test`
+- Buyer: `buyer.rina@sokotani.test`
+- Admin: `admin@sokotani.test`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Admin verification workflow
 
-## Code of Conduct
+Admins review public farmer profiles and explicitly verify or revoke the verification badge.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Promote an existing user to admin:
 
-## Security Vulnerabilities
+```bash
+php artisan sokotani:make-admin admin@sokotani.test
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+This command prompts for the account password before updating the role.
+
+## Notifications
+
+When an offer is created, countered, accepted, rejected, cancelled, or completed, the related user receives an in-app notification. The notification center is available from the account menu.
+
+## Testing
+
+Run the automated checks with:
+
+```bash
+php artisan test
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License.
