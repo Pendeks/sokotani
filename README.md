@@ -12,23 +12,6 @@ SokoTani is a Laravel marketplace for local agricultural products. Farmers can p
 - Admin verification for farmer trust badges
 - Demo seed data for farmer, buyer, and admin accounts
 
-## Tech stack
-
-- PHP 8.1+
-- Laravel 10
-- MySQL / MariaDB-compatible database
-- Blade templates and Laravel routes/controllers
-- PHPUnit for feature coverage
-
-## Project structure
-
-- `app/` — controllers, models, middleware, and notifications
-- `database/migrations/` — schema for users, products, offers, and notifications
-- `database/seeders/` — demo marketplace seeders
-- `resources/views/` — Blade templates for marketplace, profiles, and admin workflows
-- `routes/web.php` — application routes
-- `tests/Feature/MarketplaceTest.php` — user flow validation
-
 ## Local setup
 
 1. Clone the repository.
