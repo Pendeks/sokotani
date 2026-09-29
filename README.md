@@ -1,57 +1,33 @@
 ﻿# SokoTani
 
-SokoTani is a Laravel marketplace for local agricultural products. Farmers can publish crop listings, buyers can negotiate wholesale prices, and both sides can track updates through in-app notifications. The app is designed for direct farm-to-market trading in a village context with transparent negotiation and simple trust signals.
+SokoTani is a marketplace platform designed for agricultural transactions between farmers and buyers. The project focuses on wholesale ordering, price negotiation, and trust-building through farmer verification and profile transparency.
 
-## Features
+## Project overview
 
-- Farmer storefronts with public farm profile pages
-- Product catalog with search and category filtering
-- Wholesale negotiation flow with buyer and farmer responses
-- Offer tracking and status updates
-- In-app notification center for new offers, counters, accept/reject actions, and completion events
-- Admin verification for farmer trust badges
-- Demo seed data for farmer, buyer, and admin accounts
+This app allows:
 
-## Local setup
+- farmers to publish product listings and manage availability
+- buyers to browse products and submit offers
+- both sides to negotiate prices and finalize bulk orders
+- admins to verify trusted farmer profiles
+- users to receive in-app notifications for offer updates
 
-1. Clone the repository.
-2. Copy the environment example:
+## Key features
 
-```bash
-cp .env.example .env
-```
-
-3. Generate the application key:
-
-```bash
-php artisan key:generate
-```
-
-4. Configure your database connection in `.env`.
-5. Run the database setup and seed demo data:
-
-```bash
-php artisan migrate
-php artisan db:seed --class="Database\\Seeders\\DemoMarketplaceSeeder"
-```
-
-6. Start the app:
-
-```bash
-php artisan serve
-```
-
-7. Open http://localhost:8000
+- Farmer profile pages with public location and farm description
+- Product catalog with search and category browsing
+- Offer negotiation flow for buyer and farmer responses
+- Verified farmer badges for trust and credibility
+- Notification center for market activity
+- Role-based access for buyer, farmer, and admin flows
 
 ## Demo accounts
 
-The demo seeder creates these local accounts. The shared password is:
+Seeded demo accounts are available for local testing.
 
 ```text
-SokoTaniDemo!2026
+Password: SokoTaniDemo!2026
 ```
-
-Accounts:
 
 - Farmer: `farmer.budi@sokotani.test`
 - Farmer: `farmer.sari@sokotani.test`
@@ -61,37 +37,47 @@ Accounts:
 - Buyer: `buyer.rina@sokotani.test`
 - Admin: `admin@sokotani.test`
 
-## Admin verification workflow
+## Local setup
 
-Admins review public farmer profiles and explicitly verify or revoke the verification badge.
+```bash
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan db:seed --class="Database\\Seeders\\DemoMarketplaceSeeder"
+php artisan serve
+```
 
-Promote an existing user to admin:
+Then open:
+
+```text
+http://localhost:8000
+```
+
+## Admin workflow
+
+To promote an existing account to admin:
 
 ```bash
 php artisan sokotani:make-admin admin@sokotani.test
 ```
 
-This command prompts for the account password before updating the role.
-
-## Notifications
-
-When an offer is created, countered, accepted, rejected, cancelled, or completed, the related user receives an in-app notification. The notification center is available from the account menu.
+This command asks for the user’s current password before updating their role.
 
 ## Project screenshots
 
-These screenshots show the key user flows and UI for the marketplace demo.
+![Homepage marketplace](docs/screenshots/home.png)
 
-![Homepage marketplace](https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80)
+![Product detail](docs/screenshots/product.png)
 
-![Product catalog](https://images.unsplash.com/photo-1464226184884-fa52acb6e60d?auto=format&fit=crop&w=1200&q=80)
-
-![Farmer profile and verification](https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=80)
+![Farmer profile and verification](docs/screenshots/farmer.png)
 
 ## Testing
-
-Run the automated checks with:
 
 ```bash
 php artisan test
 ```
+
+## License
+
+This project is licensed under the MIT License.
 
