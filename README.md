@@ -77,6 +77,16 @@ This command prompts for the account password before updating the role.
 
 When an offer is created, countered, accepted, rejected, cancelled, or completed, the related user receives an in-app notification. The notification center is available from the account menu.
 
+## Project screenshots
+
+These screenshots show the key user flows and UI for the marketplace demo.
+
+![Homepage marketplace](https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80)
+
+![Product catalog](https://images.unsplash.com/photo-1464226184884-fa52acb6e60d?auto=format&fit=crop&w=1200&q=80)
+
+![Farmer profile and verification](https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=80)
+
 ## Testing
 
 Run the automated checks with:
@@ -85,6 +95,3 @@ Run the automated checks with:
 php artisan test
 ```
 
-## License
-
-This project is licensed under the MIT License.
